@@ -3,7 +3,7 @@
 
 A spatial analysis project that identifies residential properties at highest risk of flooding during spring snowmelt by integrating FEMA flood zones, historical (April 12, 2024) snow water equivalent (SWE) data, and building footprints.
 
-**Live Interactive Map:** [View the web map here](https://dander1989.github.io/data/output/risk_map.html/)
+**Live Interactive Map:** [View the web map here](https://dander1989.github.io/Spring-Thaw-Flood-Assessor/risk_map.html/)
 
 ---
 
@@ -196,15 +196,16 @@ pip install geopandas rasterio gdal osmnx shapely duckdb folium leafmap pandas n
 git clone https://github.com/[your-username]/steamboat-springs-flood-vulnerability.git
 cd steamboat-springs-flood-vulnerability
 
+# 2. Use environment.yaml to obtain libraries
+
 # 2. Download raw data (FEMA must be manual)
 # - Visit: https://hazards.fema.gov/nhl/
 # - Search: Routt County, CO
 # - Download flood hazard layer (shapefile)
 # - Save to: data/raw/
 
-# 3. Run analysis notebooks in order
+# 3. Run notebooks in order
 jupyter notebook
-# Execute: 01_boundary.ipynb → 02_snodas_processing.ipynb → ... → 06_visualization.ipynb
 
 # Or run compiled script
 python scripts/analysis.py
@@ -215,7 +216,7 @@ ls maps/
 ```
 
 ### View Interactive Map
-Open `web/index.html` in a browser, or visit the [Live Map](#live-interactive-map).
+Open `risk_map.html` in a browser, or visit the [Live Map](#live-interactive-map).
 
 ---
 
@@ -324,7 +325,7 @@ This project is licensed under the MIT License. See `LICENSE` file for details.
 - OpenStreetMap: https://www.openstreetmap.org/
 - DuckDB Spatial: https://duckdb.org/docs/extensions/spatial
 - Geospatial Analysis in Python: https://geopandas.org/
-
+  
 ---
 
 **Last Updated:** March 16, 2026
