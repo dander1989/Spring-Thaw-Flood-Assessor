@@ -282,22 +282,6 @@ This project demonstrates:
 
 ---
 
-## How to Contribute
-
-Found a bug? Have an idea for improvement? 
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-idea`)
-3. Commit your changes with clear messages
-4. Push and open a pull request
-
-Please include:
-- Description of changes
-- Rationale (why this improvement matters)
-- Testing steps if applicable
-
----
-
 ## Acknowledgments
 
 - **Data Providers:** NOAA (SNODAS), OpenStreetMap, FEMA
@@ -330,4 +314,4 @@ This project is licensed under the MIT License. See `LICENSE` file for details.
   
 ---
 
-**Last Updated:** March 16, 2026
+**Last Updated:** March 17, 2026
