@@ -1,15 +1,15 @@
 # Spring Thaw: Snowmelt & Flood Vulnerability Assessor
 ## Steamboat Springs, Colorado
 
-A spatial analysis project that identifies residential properties at highest risk of flooding during spring snowmelt by integrating FEMA flood zones, current snow water equivalent (SWE) data, and building footprints.
+A spatial analysis project that identifies residential properties at highest risk of flooding during spring snowmelt by integrating FEMA flood zones, historical (April 12, 2024) snow water equivalent (SWE) data, and building footprints.
 
-**Live Interactive Map:** [View the web map here](https://[your-github-username].github.io/steamboat-springs-flood-vulnerability/)
+**Live Interactive Map:** [View the web map here](https://dander1989.github.io/data/output/risk_map.html/)
 
 ---
 
 ## Problem Statement
 
-Spring flooding isn't just about proximity to a river; rapid snowmelt is the primary catalyst. By enriching standard flood zone and building footprint data with current snowpack levels, emergency managers can transition from generic "flood warnings" to pinpointing exactly which neighborhoods face the highest immediate risk from localized snowmelt.
+Spring flooding isn't just about proximity to a river; rapid snowmelt is the primary catalyst. By enriching standard flood zone and building footprint data with historical snowpack levels, emergency managers can transition from generic "flood warnings" to pinpointing exactly which neighborhoods face the highest immediate risk from localized snowmelt.
 
 This project demonstrates how open geospatial data and spatial analysis can support actionable emergency preparedness decisions.
 
@@ -32,11 +32,11 @@ This project demonstrates how open geospatial data and spatial analysis can supp
 
 ## Data Sources
 
-| Source | Type | Resolution | Coverage | Notes |
-|--------|------|-----------|----------|-------|
-| NOAA SNODAS | Raster (SWE) | 1 km | Continental US | April 12, 2024 snapshot |
-| OpenStreetMap | Vector (buildings) | Feature-level | Global | 5,794 buildings in study area |
-| FEMA NFHL | Vector (flood zones) | Polygon | United States | Routt County, CO (2005 vintage) |
+| Source        | Type                 | Resolution    | Coverage       | Notes                           |
+| ------------- | -------------------- | ------------- | -------------- | ------------------------------- |
+| NOAA SNODAS   | Raster (SWE)         | 1 km          | Continental US | April 12, 2024 snapshot         |
+| OpenStreetMap | Vector (buildings)   | Feature-level | Global         | 5,794 buildings in study area   |
+| FEMA NFHL     | Vector (flood zones) | Polygon       | United States  | Routt County, CO (2005 vintage) |
 
 ---
 
@@ -124,30 +124,23 @@ Averaged SWE values for buildings intersecting multiple grid cells.
 
 ## Deliverables
 
-### Maps (in `/maps/`)
-- **01_risk_by_building.png** - Buildings colored by risk category with flood zones overlay
-- **02_risk_with_snodas_grid.png** - Risk map plus SNODAS grid cells showing snowpack distribution
+### Maps & Data (in `data/output/`)
+- **01_risk_by_building(1-4).png** - Buildings colored by risk category with flood zones overlay throughout Steamboat Springs, CO.
+- **02_SNODAS_Grid.png** - SNODAS grid cells showing snowpack distribution and building risks
 - **03_snodas_clipped.png** - Snowpack data alone (context for SWE variation)
-- **04_all_buildings.png** - Full building inventory in study area
+- **04_steamboat_all_buildings.png** - Full building inventory in study area
 - **05_flood_zones.png** - FEMA flood hazard areas
+- **bldgs_vulnerability.csv** - Ranked buildings (sorted by vulnerability score descending)
+- Images that aren't mentioned are supplemental and showing my overall process.
 
-### Data (in `/data/processed/`)
+### Data (in `/data/processed/`) 
+Main data here, but kept other processed data 
 - `bldgs_vulnerability_final.geojson` - 525 buildings with vulnerability scores and risk categories
-- `bldgs_vulnerability.csv` - Ranked buildings (sorted by vulnerability score descending)
 - `snodas_grid.geojson` - 168 grid cells with SWE values
-- `a_fld_zones_area_utm.geojson` - High-risk flood zone polygons
+- `a_fld_zones_area.geojson` - High-risk flood zone polygons
 
-### Code (in `/scripts/`)
-- `01_boundary.ipynb` - Fetch and verify study area boundary
-- `02_snodas_processing.ipynb` - Download, convert, clip raster data
-- `03_vector_prep.ipynb` - Prepare OSM and FEMA data
-- `04_grid_generation.ipynb` - Convert raster to vector grid
-- `05_duckdb_analysis.ipynb` - Spatial joins and vulnerability scoring
-- `06_visualization.ipynb` - Create maps and exports
-- `analysis.py` - Compiled production script (all steps in sequence)
-
-### Interactive Web Map (in `/web/`)
-- `index.html` - Standalone Leafmap-based web map (hosted on GitHub Pages)
+### Interactive Web Map
+- `risk_map.html` - Standalone Leafmap-based web map (hosted on GitHub Pages)
 - See [Live Map](#live-interactive-map) link above
 
 ---
@@ -252,14 +245,14 @@ Open `web/index.html` in a browser, or visit the [Live Map](#live-interactive-ma
 
 ## Technical Stack
 
-| Component | Tool | Version |
-|-----------|------|---------|
-| Language | Python | 3.10+ |
-| Geospatial | GeoPandas, Rasterio, GDAL, Shapely | Latest |
-| Database | DuckDB (spatial extension) | 0.10+ |
-| Web Mapping | Leafmap, Folium | Latest |
-| Visualization | QGIS, Matplotlib | Latest |
-| Version Control | Git/GitHub | — |
+| Component       | Tool                               | Version |
+| --------------- | ---------------------------------- | ------- |
+| Language        | Python                             | 3.10+   |
+| Geospatial      | GeoPandas, Rasterio, GDAL, Shapely | Latest  |
+| Database        | DuckDB (spatial extension)         | 0.10+   |
+| Web Mapping     | Leafmap, Folium                    | Latest  |
+| Visualization   | QGIS, Matplotlib                   | Latest  |
+| Version Control | Git/GitHub                         | —       |
 
 ---
 
@@ -282,8 +275,7 @@ This project demonstrates:
 1. **Data Inspection Matters:** Visual verification in QGIS caught an inflated max-distance value that would have skewed results
 2. **CRS Consistency:** Reprojection issues were debugged only after checking geometry validity and explicitly setting spatial references
 3. **Iterative Refinement:** River proximity integration seemed simple initially; complexity revealed the value of starting simple and adding features incrementally
-4. **Scope Management:** Knowing when to revert to a simpler model (SWE-only) was key to delivering a working project on schedule
-5. **Documentation First:** Decisions (buffer size, scaling factors, weighting) must be explained in code comments for reproducibility
+4. **Documentation First:** Decisions (buffer size, scaling factors, weighting) must be explained in code comments for reproducibility
 
 ---
 
@@ -319,9 +311,9 @@ This project is licensed under the MIT License. See `LICENSE` file for details.
 
 ## Contact
 
-**Author:** D.J.  
+**Author:** David J. Anderson
 **Project Date:** March 2026  
-**Questions?** Open an issue on GitHub or reach out via [LinkedIn/personal site]
+**Questions?** Open an issue on GitHub or reach out via [[LinkedIn/personal site](https://www.linkedin.com/in/dander89/)]
 
 ---
 
