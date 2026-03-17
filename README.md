@@ -3,7 +3,9 @@
 
 A spatial analysis project that identifies residential properties at highest risk of flooding during spring snowmelt by integrating FEMA flood zones, historical (April 12, 2024) snow water equivalent (SWE) data, and building footprints.
 
-**Live Interactive Map:** [View the web map here](https://dander1989.github.io/Spring-Thaw-Flood-Assessor/risk_map.html/)
+**Live Interactive Map:**
+View the web map here: 
+https://dander1989.github.io/Spring-Thaw-Flood-Assessor/risk_map.html
 
 ---
 
