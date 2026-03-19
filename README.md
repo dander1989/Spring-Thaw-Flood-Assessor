@@ -207,14 +207,11 @@ cd steamboat-springs-flood-vulnerability
 # - Save to: data/raw/
 
 # 3. Run notebooks in order
-jupyter notebook
+jupyter spring_thaw.ipynb
 
-# Or run compiled script
-python scripts/analysis.py
 
 # 4. View outputs
 ls data/processed/
-ls maps/
 ```
 
 ### View Interactive Map
